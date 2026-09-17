@@ -1,0 +1,28 @@
+{
+  "name": "udemy_nodejs_github",
+  "version": "1.0.0",
+  "description": "Udemy course practicals noting down module-wise",
+  "homepage": "https://github.com/soniyakukreja/udemy_nodejs#readme",
+  "bugs": {
+    "url": "https://github.com/soniyakukreja/udemy_nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soniyakukreja/udemy_nodejs.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "nodemon app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

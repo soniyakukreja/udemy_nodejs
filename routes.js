@@ -8,7 +8,8 @@ const createUser  = (req,res)=>{
 
     req.on('end',()=>{
         const parsedBody = Buffer.concat(body).toString();
-        console.log(parsedBody);
+        const message = parsedBody.split("=")[1];
+        console.log(message);
         res.setHeader('location','/users');
         res.statusCode = 302
         return res.end();

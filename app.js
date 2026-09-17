@@ -1,20 +1,28 @@
+const express = require('express');
 const http = require('http');
-const routes = require('./routes');
-
-const server = http.createServer((req,res)=>{
-
-    if(req.url==="/"){
-        res.setHeader('content-type','text/html');
-        res.write('<html><head><title>Landing Page</title></head><body><h4>Welcome</h4><form method="post" action="/create-user"><input type="text" name="username" /><button type="submit">Submit</button></form></body></html>');
-    }
-
-    if(req.url==='/users'){
-        routes.users(req,res);
-    }
+// const routes = require('./routes');
 
 
-    if(req.url==='/create-user' && req.method==="POST"){
-        routes.createUser(req,res);
-    }
-});
+const app = express();
+
+app.use('/',(req,res,next)=>{
+    console.log("always run the middleware");
+    next();
+})
+
+app.use('/',(req,res,next)=>{
+    console.log("always run the middleware 2");
+    next();
+})
+
+app.use('/users',(req,res)=>{
+    res.send("<h2>Hello Users </h2>")
+})
+
+app.use('/',(req,res)=>{
+    res.send("<h2>Hello from express js </h2>")
+})
+
+
+const server = http.createServer(app);
 server.listen(5000);
