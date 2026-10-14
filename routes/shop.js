@@ -11,7 +11,7 @@ router.get('/',(req,res,next)=>{
     // res.sendFile(path.join(rootDir,'views','shop.html'));
 //===PUG template engine
         const products = adminData.products
-        res.render('shop',{prods:products, docTitle:'Shop'});
+        res.render('shop',{prods:products, title:'Shop'});
 
 })
 
