@@ -3,16 +3,19 @@ const bodyParser = require('body-parser');
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 const path = require('path');
+const expressHbs = require('express-handlebars');
 
 const app = express();
 
-app.set('view engine','pug');
-app.set('views','views');
+app.engine('hbs', expressHbs.engine({ extname: 'hbs', defaultLayout: 'main-layout' }));
+app.set('view engine', 'hbs');
 
-app.use(bodyParser.urlencoded({extended: false }));
-app.use(express.static(path.join(__dirname,'public')));
+app.set('views', 'views');
 
-app.use('/admin',adminData.router);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/admin', adminData.router);
 app.use(shopRoutes);
 // app.get('/products',(req,res,next)=>{
 //     console.log("abc")
@@ -29,9 +32,9 @@ app.use(shopRoutes);
 //     res.send("<h3>Welcom Page</h3>")
 // })
 
-app.use((req,res)=>{
+app.use((req, res) => {
     // res.status(404).sendFile(path.join(__dirname,'views','404.html'))
-    res.status(404).render('404');
+    res.status(404).render('404', { pageTitle: 'Page Not Found' });
 })
 
 app.listen(3000)
